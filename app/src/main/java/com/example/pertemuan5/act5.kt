@@ -1,15 +1,16 @@
 package com.example.pertemuan5
 
-import android.R.attr.top
-import android.text.Layout
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FormDataDiri(modifier: Modifier) {
+
     // variabel-variabel untuk mengingat nilai masukan dari keyboard
     var textNama by remember { mutableStateOf(value = "") }
     var textAlamat by remember { mutableStateOf(value = "") }
@@ -46,6 +48,7 @@ fun FormDataDiri(modifier: Modifier) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         OutlinedTextField(
             value = textNama,
             singleLine = true,
@@ -75,37 +78,50 @@ fun FormDataDiri(modifier: Modifier) {
                     Text(item)
                 }
             }
-            OutlinedTextField(
-                value = textAlamat,
-                singleLine = true,
-                modifier = Modifier.width(250.dp),
-                label = { Text(text = "Alamat Lengkap") },
-                onValueChange = {
-                    textAlamat = it
-                }
-            )
-            HorizontalDivider(
-                modifier = Modifier.padding(
-                    bottom =
-                        dimensionResource(id = R.dimen.padding_medium), top = dimensionResource(
-                        id = R.dimen.padding_medium
-                )
+        }
+
+        OutlinedTextField(
+            value = textAlamat,
+            singleLine = true,
+            modifier = Modifier.width(250.dp),
+            label = { Text(text = "Alamat Lengkap") },
+            onValueChange = {
+                textAlamat = it
+            }
+        )
+
+        HorizontalDivider(
+            modifier = Modifier.padding(
+                bottom = dimensionResource(id = R.dimen.padding_medium),
+                top = dimensionResource(id = R.dimen.padding_medium)
             ),
-                thickness = dimensionResource(id = R.dimen.divider_tipis),
-                color = Color.DarkGray
-            )
-            Button(
-                modifier = Modifier.fillMaxWidth(fraction = if),
-                // the button is enabled when the user makes a selection
-                enable = textAlamat.isNotEmpty(),
-                onClick = {
-                    nama = textNama
-                    jenis = textJK
-                    alamat = textAlamat
-                }
-            ) {
-                Text(stringResource(id = R.string.submit))
-                }
+            thickness = dimensionResource(id = R.dimen.divider_tipis),
+            color = Color.DarkGray
+        )
+
+        Button(
+            modifier = Modifier.fillMaxWidth(fraction = 0.8f),
+            // the button is enabled when the user makes a selection
+            enabled = textAlamat.isNotEmpty(),
+            onClick = {
+                nama = textNama
+                jenis = textJK
+                alamat = textAlamat
+            }
+        ) {
+            Text(stringResource(id = R.string.submit))
+        }
+
+        HorizontalDivider(
+            modifier = Modifier.padding(
+                bottom = dimensionResource(id = R.dimen.padding_medium),
+                top = dimensionResource(id = R.dimen.padding_medium)
+            ),
+            thickness = dimensionResource(id = R.dimen.divider_tipis),
+            color = Color.DarkGray
+        )
+
+            }
         }
     }
 }
